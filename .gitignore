@@ -33,3 +33,9 @@ HUONG_DAN_TRIEN_KHAI_ASSIGNMENT_GITHUB.md
 03-lecture-materials/
 05-ai-prompt-library/
 SOF304*
+
+# Local secrets & database truststores
+.env
+application-local.properties
+certs/*.p12
+certs/*.jks
