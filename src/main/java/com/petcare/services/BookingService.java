@@ -32,9 +32,13 @@ public class BookingService {
     private final AppointmentDAO appointmentDAO;
 
     public BookingService() {
-        this.petDAO = new PetDAOImpl();
-        this.serviceDAO = new ServiceDAOImpl();
-        this.appointmentDAO = new AppointmentDAOImpl();
+        this(new PetDAOImpl(), new ServiceDAOImpl(), new AppointmentDAOImpl());
+    }
+
+    public BookingService(PetDAO petDAO, ServiceDAO serviceDAO, AppointmentDAO appointmentDAO) {
+        this.petDAO = petDAO;
+        this.serviceDAO = serviceDAO;
+        this.appointmentDAO = appointmentDAO;
     }
 
     /** Books one service for one pet with one staff member at the given start time. */

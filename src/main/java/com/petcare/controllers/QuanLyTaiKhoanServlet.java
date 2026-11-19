@@ -21,10 +21,18 @@ public class QuanLyTaiKhoanServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Set<String> VALID_ROLES = Set.of("CUSTOMER", "STAFF", "ADMIN");
 
-    private final AccountDAO accountDAO = new AccountDAOImpl();
+    private final AccountDAO accountDAO;
+
+    public QuanLyTaiKhoanServlet() {
+        this(new AccountDAOImpl());
+    }
+
+    public QuanLyTaiKhoanServlet(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -42,7 +50,7 @@ public class QuanLyTaiKhoanServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

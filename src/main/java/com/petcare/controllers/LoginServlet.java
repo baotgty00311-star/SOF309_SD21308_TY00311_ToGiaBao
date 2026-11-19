@@ -15,10 +15,18 @@ import java.sql.SQLException;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/dang-nhap"})
 public class LoginServlet extends HttpServlet {
 
-    private final AuthService authService = new AuthService();
+    private final AuthService authService;
+
+    public LoginServlet() {
+        this(new AuthService());
+    }
+
+    public LoginServlet(AuthService authService) {
+        this.authService = authService;
+    }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -41,7 +49,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

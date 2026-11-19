@@ -33,13 +33,24 @@ import java.util.Map;
 public class DatLichServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private final PetDAO petDAO = new PetDAOImpl();
-    private final ServiceDAO serviceDAO = new ServiceDAOImpl();
-    private final StaffDAO staffDAO = new StaffDAOImpl();
-    private final BookingService bookingService = new BookingService();
+    private final PetDAO petDAO;
+    private final ServiceDAO serviceDAO;
+    private final StaffDAO staffDAO;
+    private final BookingService bookingService;
+
+    public DatLichServlet() {
+        this(new PetDAOImpl(), new ServiceDAOImpl(), new StaffDAOImpl(), new BookingService());
+    }
+
+    public DatLichServlet(PetDAO petDAO, ServiceDAO serviceDAO, StaffDAO staffDAO, BookingService bookingService) {
+        this.petDAO = petDAO;
+        this.serviceDAO = serviceDAO;
+        this.staffDAO = staffDAO;
+        this.bookingService = bookingService;
+    }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -52,7 +63,7 @@ public class DatLichServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

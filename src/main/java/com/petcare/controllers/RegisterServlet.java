@@ -14,10 +14,18 @@ import java.sql.SQLException;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register", "/dang-ky"})
 public class RegisterServlet extends HttpServlet {
 
-    private final AuthService authService = new AuthService();
+    private final AuthService authService;
+
+    public RegisterServlet() {
+        this(new AuthService());
+    }
+
+    public RegisterServlet(AuthService authService) {
+        this.authService = authService;
+    }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -25,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

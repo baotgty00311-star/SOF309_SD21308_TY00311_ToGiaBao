@@ -15,7 +15,15 @@ import java.sql.SQLException;
 @WebServlet(name = "ProfileServlet", urlPatterns = {"/profile", "/ho-so"})
 public class ProfileServlet extends HttpServlet {
 
-    private final AuthService authService = new AuthService();
+    private final AuthService authService;
+
+    public ProfileServlet() {
+        this(new AuthService());
+    }
+
+    public ProfileServlet(AuthService authService) {
+        this.authService = authService;
+    }
 
     private void popFlashAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -35,7 +43,7 @@ public class ProfileServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -66,7 +74,7 @@ public class ProfileServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
